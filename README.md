@@ -1,7 +1,7 @@
-<H3>ENTER YOUR NAME</H3>
-<H3>ENTER YOUR REGISTER NO.</H3>
+<H3>GOMATHI G</H3>
+<H3>212225230079</H3>
 <H3>EX. NO.1</H3>
-<H3>DATE</H3>
+<H3>03.11.2026</H3>
 <H1 ALIGN =CENTER> Introduction to Kaggle and Data preprocessing</H1>
 
 ## AIM:
@@ -37,11 +37,61 @@ STEP 5:Normalizing the data<BR>
 STEP 6:Splitting the data into test and train<BR>
 
 ##  PROGRAM:
-TYPE YOUR CODE HERE
+```
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler, LabelEncoder
 
+# Load dataset
+df = pd.read_csv("carsemission.csv")
 
+# Display dataset
+print("First 5 rows:")
+print(df.head())
+
+print("\nMissing values:")
+print(df.isnull().sum())
+
+# Handle missing values
+for col in df.select_dtypes(include="number").columns:
+    df[col] = df[col].fillna(df[col].mean())
+
+for col in df.select_dtypes(include="object").columns:
+    df[col] = df[col].fillna(df[col].mode()[0])
+
+# Encode categorical columns
+le = LabelEncoder()
+for col in df.select_dtypes(include="object").columns:
+    df[col] = le.fit_transform(df[col])
+
+# Separate input and output
+print("\nColumn names:")
+print(df.columns.tolist())
+
+# Use the last column as the target
+X = df.iloc[:, :-1]
+y = df.iloc[:, -1]
+
+# Split dataset
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# Standardize input features
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+# Display results
+print("\nTraining data shape:", X_train.shape)
+print("Testing data shape:", X_test.shape)
+print("\nPreprocessed training data:")
+print(X_train[:5])
+
+print("\nPreprocessing completed successfully!")
+```
 ## OUTPUT:
-SHOW YOUR OUTPUT HERE
+![alt text](image.png)
 
 
 ## RESULT:
