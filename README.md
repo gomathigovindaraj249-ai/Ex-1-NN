@@ -1,5 +1,5 @@
-<H3>GOMATHI G</H3>
-<H3>212225230079</H3>
+<H3>NAME :GOMATHI G</H3>
+<H3>REG NO :212225230079</H3>
 <H3>EX. NO.1</H3>
 <H3>03.11.2026</H3>
 <H1 ALIGN =CENTER> Introduction to Kaggle and Data preprocessing</H1>
@@ -89,6 +89,7 @@ print("\nPreprocessed training data:")
 print(X_train[:5])
 
 print("\nPreprocessing completed successfully!")
+
 ```
 ## OUTPUT:
 ![alt text](image.png)
